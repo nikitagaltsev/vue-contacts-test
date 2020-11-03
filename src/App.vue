@@ -3,26 +3,15 @@
     <header class="headed">
       <h1 class="header__title">Книга контактов</h1>
     </header>
-    <Main />
-    <footer class="footer">
-      <p class="footer__copyright">{{ getYear() }} © Nikita Galtsev</p>
-    </footer>
+    <hr />
+
+    <router-view />
+
   </div>
 </template>
 
 <script>
-import Main from "./components/Main";
-
-export default {
-  components: {
-    Main: Main
-  },
-  methods: {
-    getYear() {
-      return new Date().getFullYear();
-    }
-  }
-};
+export default {};
 </script>
 
 <style>

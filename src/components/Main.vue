@@ -71,12 +71,7 @@ export default {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
-.contracts__person {
-  max-width: 250px;
-  background-color: aliceblue;
-  border-radius: 10px;
-  margin: 5px;
-}
 </style>
