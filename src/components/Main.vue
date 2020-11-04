@@ -7,6 +7,7 @@
         class="input-container__input"
         v-model="name"
         placeholder="введите имя контакта"
+        required
       />
       <input
         type="number"
@@ -14,31 +15,30 @@
         class="input-container__input"
         v-model="number"
         placeholder="введите номер"
+        required
       />
       <button type="submit" class="input-container__button">
         Добавить контакт
       </button>
     </form>
 
-    <ul class="contacts">
+    <ul class="contacts" v-if="allContacts.length">
       <li
         class="contracts__person"
         v-for="contact in allContacts"
         :key="contact.id"
       >
-        <ContactCard
-          :id="contact.id"
-          :name="contact.name"
-          :number="contact.number"
-        />
+        <router-link tag="button" :to="'/contact/' + contact.id">
+          <h2 class="contracts__name">{{ contact.name }}</h2>
+          <p class="contracts__number">{{ contact.number }}</p>
+        </router-link>
       </li>
     </ul>
+    <p v-else>Номеров пока нет :(</p>
   </main>
 </template>
 
 <script>
-import { mapMutations, mapGetters } from "vuex";
-import ContactCard from "./ContactCard";
 export default {
   data() {
     return {
@@ -46,18 +46,19 @@ export default {
       number: "",
     };
   },
-  components: {
-    ContactCard,
+  computed: {
+    allContacts() {
+      return this.$store.getters.allContacts;
+    },
   },
-  computed: mapGetters(["allContacts"]),
   methods: {
-    ...mapMutations(["createContact"]),
     submit() {
-      this.createContact({
+      const contact = {
         name: this.name,
         number: this.number,
         id: Date.now(),
-      });
+      };
+      this.$store.dispatch("createContact", contact);
     },
   },
 };
@@ -74,4 +75,11 @@ export default {
   justify-content: center;
 }
 
+.contracts__person {
+  width: 200px;
+  background-color: aliceblue;
+  border-radius: 10px;
+  margin: 5px;
+  cursor: pointer;
+}
 </style>

@@ -1,24 +1,22 @@
 import Vue from "vue";
-import VueRouter from "vue-router";
+import Router from "vue-router";
 import Home from "./views/Home.vue";
 
-Vue.use(VueRouter);
+Vue.use(Router);
 
-const routes = [
-  {
-    path: "/",
-    name: "Home",
-    component: Home,
-  },
-  {
-    path: "/contact",
-    component: () => import("./views/Contact.vue"),
-  },
-];
-
-const router = new VueRouter({
+export default new Router({
   mode: "history",
-  routes,
+  base: process.env.BASE_URL,
+  routes: [
+    {
+      path: "/",
+      name: "Home",
+      component: Home,
+    },
+    {
+      path: "/contact/:id",
+      name: "contact",
+      component: () => import("./views/Contact.vue"),
+    },
+  ],
 });
-
-export default router;
