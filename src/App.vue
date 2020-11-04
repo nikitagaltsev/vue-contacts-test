@@ -1,20 +1,31 @@
 <template>
   <div id="app">
-    <header class="headed">
+    <header class="header">
       <h1 class="header__title">Книга контактов</h1>
     </header>
-    <hr />
 
     <router-view />
 
+    <footer class="footer">
+      <p class="footer__copyright">
+        {{ getYear() }} © Nikita Galtsev. Test task for LogicLLC.
+      </p>
+    </footer>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    getYear() {
+      return new Date().getFullYear();
+    },
+  },
+};
 </script>
 
 <style>
+@include normalize();
 div,
 a,
 section,
@@ -35,6 +46,18 @@ footer {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  background-color: #66fff3;
+  background-color: white;
+}
+
+.header {
+  background-color: #145bb8;
+  color: aliceblue;
+  margin-bottom: 40px;
+}
+
+.footer {
+  margin-top: 50px;
+  background-color: #145bb8;
+  color: aliceblue;
 }
 </style>

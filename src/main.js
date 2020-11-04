@@ -2,6 +2,7 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./Router";
 import store from "./store/contacts";
+import "normalize.css";
 
 Vue.config.productionTip = false;
 
