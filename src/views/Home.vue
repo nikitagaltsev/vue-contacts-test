@@ -29,6 +29,7 @@
         :key="contact.id"
       >
         <CardContact
+          :contact="contact"
           :id="contact.id"
           :name="contact.name"
           :number="contact.number"
@@ -62,10 +63,11 @@ export default {
       const contact = {
         name: this.name,
         number: this.number,
+        info: {},
         id: Date.now(),
       };
       this.$store.dispatch("createContact", contact);
-    }
+    },
   },
 };
 </script>
